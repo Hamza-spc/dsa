@@ -1,5 +1,7 @@
 package org.com.arrays;
 
+import java.util.HashMap;
+
 public class TwoSum {
 
     public static void main(String[] args) {
@@ -7,12 +9,18 @@ public class TwoSum {
         int[] nums = {3, 2, 4};
         int target = 6;
 
-        for (int i=0; i<nums.length ; i++){
-            for(int j= i+1 ; i< nums.length; i++){
-                if(nums[i]+nums[j]==target){
-                    System.out.println("the numbers are : " + nums[i] + " and " + nums[j]);
-                }
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            int current = nums[i];
+            int needed = target - current;
+
+            if (map.containsKey(needed)) {
+                System.out.println(map.get(needed) + ", " + i);
+                return;
             }
+
+            map.put(current, i);
         }
     }
 }
